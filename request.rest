@@ -1,0 +1,43 @@
+###cadastrar competicao
+POST http://localhost:3003/competicao/cadastro
+Content-Type: application/json
+
+{
+   "competicao": "100m rasos",
+   "unidade":"s"
+}
+
+###pegar todas as competicoes
+GET http://localhost:3003/competicao/get
+
+###pegar nome da competicao pelo id
+GET http://localhost:3003/competicao/getName
+Content-Type: application/json
+
+{
+    "id": "5721b389-4e6e-44d1-ab40-ef3f54905dcf"
+}
+
+###pegar vencedor
+GET http://localhost:3003/competicao/getWinner
+Content-Type: application/json
+
+{
+    "id": "5721b389-4e6e-44d1-ab40-ef3f54905dcf",
+    "definitivo": "FALSE"
+}
+
+###cadastrar atleta
+POST http://localhost:3003/atleta/cadastro
+Content-Type: application/json
+
+{
+    "competicaoId": "5721b389-4e6e-44d1-ab40-ef3f54905dcf",
+    "nome": "joao almeida",
+    "value1": 12.3,
+    "value2": 12.4,
+    "value3": 13.1,
+    "unidade": "s"
+}
+
+###
