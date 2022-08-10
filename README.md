@@ -38,4 +38,7 @@ CREATE TABLE atleta(
     value VARCHAR(255) NOT NULL,
     competicao VARCHAR(255) NOT NULL,
     FOREIGN KEY(competicao) REFERENCES competicao(id)
-);```
+);
+
+
+OBS: O projeto está incompleto, falta a parte de testes automatizados.
