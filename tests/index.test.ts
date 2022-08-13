@@ -65,8 +65,6 @@ describe("testando a competicao signup", () => {
     })
 
     test("Sucesso no cadastro", async () => {
-        try {
-
             const competicao: DadosCompeticao = {
                 competicao: "100m rasos",
                 unidade: "s"
@@ -75,11 +73,6 @@ describe("testando a competicao signup", () => {
             const token = await competicaoBusinessMock.registrar(competicao)
             expect(token).toBe("certo")
 
-        } catch (error: any) {
-            console.log(error)
-        } finally {
-            expect.assertions(1)
-        }
     })
 
 })
@@ -100,16 +93,10 @@ describe("testando getById de competiçao", () => {
         }
     })
     test("Sucesso ", async () => {
-        expect.assertions(1)
-        try {
 
             const id = "5721b389-4e6e-44d1-ab40-ef3f54905dcf"
 
             const token = await competicaoBusinessMock.getById(id)
-            expect(token).toBe("asdfasdf")//?????? sempre funciona
-
-        } catch (error: any) {
-            console.log(error)
-        }
+            expect(token).toEqual("asdfasdf")//?????? sempre funciona
     })
 })

@@ -36,7 +36,7 @@ export class CompeticaoDataBase extends BaseDataBase {
             const result = await BaseDataBase.connection
                 .select("*")
                 .from(tableName)
-                .where(id)
+                .where({id})
             
             return result[0]
         } catch (error: any) {
@@ -46,14 +46,14 @@ export class CompeticaoDataBase extends BaseDataBase {
 
     encerrarCompeticao = async (boolean: string, id: string) => {
         try {
-            console.log('entrou')
+            console.log(boolean, id)
             await BaseDataBase.connection
-                .update({boolean})
+                .update('boolean', boolean)
                 .into(tableName)
-                .where({id})
+                .where('id', id)
 
-            console.log('terminou')
         } catch (error: any) {
+            console.log(error)
             throw new Error( error.mysqlMessage || error.message )
         }
     }

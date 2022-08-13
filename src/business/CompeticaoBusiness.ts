@@ -18,7 +18,7 @@ export class CompeticaoBusiness {
             if (!dados.competicao || !dados.unidade) {
                 throw new InvalidInputError("Invalid input. All inputs are required")
             }
-            if(dados.unidade !== Role.metros && dados.unidade !== Role.segundos){
+            if (dados.unidade !== Role.metros && dados.unidade !== Role.segundos) {
                 throw new InvalidInputError("Unidade must be 's' or 'm'.")
             }
             const competicao = dados.competicao
@@ -27,7 +27,7 @@ export class CompeticaoBusiness {
             const id = IdGenerator.idGenerator()
 
             const data: DadosCompeticao = { competicao, unidade }
-            
+
             await this.competicaoDataBase.registrar(data, id)
 
             return id
@@ -37,7 +37,7 @@ export class CompeticaoBusiness {
         }
     }
 
-    public getAll = async  () => {
+    public getAll = async () => {
         try {
             return await this.competicaoDataBase.getAll()
         } catch (error: any) {
@@ -45,13 +45,14 @@ export class CompeticaoBusiness {
         }
     }
 
-    public getById = async (id: string) => {
+    public getById = async (temp: any) => {
         try {
-            if(!id){
+            const id = temp.id
+            if (!id) {
                 throw new InvalidInputError("Id is required.")
             }
             const result = await this.competicaoDataBase.getById(id)
-            return result 
+            return result
         } catch (error: any) {
             throw new CustomError(500, error.sqlMessage || error.message)
         }
@@ -59,30 +60,30 @@ export class CompeticaoBusiness {
 
     public getWinner = async (resposta: string, id: string) => {
         try {
+            console.log(id)
             const result = await this.atletaDataBase.getAtletaByCompeticaoId(id)
             const tipo = await this.competicaoDataBase.getById(id)
-
-            if(resposta === 'FALSE') {
+            if (resposta === 'FALSE') {
                 await this.competicaoDataBase.encerrarCompeticao(resposta, id)
             }
-            
 
-            if(tipo.unidade === Role.segundos) {
-                
+
+            if (tipo.unidade === Role.segundos) {
+
                 result.sort(function (a: any, b: any) {
                     return a.value < b.value ? -1 : a.value > b.value ? 1 : 0
                 })
                 const vencedores = [result[0], result[1], result[2]]
-                
+
                 return vencedores
             }
-            if(tipo.unidade === Role.metros) {
-                
+            if (tipo.unidade === Role.metros) {
+
                 result.sort(function (a: any, b: any) {
                     return a.value > b.value ? -1 : a.value < b.value ? 1 : 0
                 })
                 const vencedores = [result[0], result[1], result[2]]
-                
+
                 return vencedores
             }
 

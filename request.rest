@@ -10,12 +10,12 @@ Content-Type: application/json
 ###pegar todas as competicoes
 GET http://localhost:3003/competicao/get
 
-###pegar nome da competicao pelo id
+###pegar dados da competicao pelo id
 GET http://localhost:3003/competicao/getName
 Content-Type: application/json
 
 {
-    "id": "5721b389-4e6e-44d1-ab40-ef3f54905dcf"
+    "id": "4a7bc8b7-a674-42c7-8401-70a938d60c67"
 }
 
 ###pegar vencedor
@@ -32,8 +32,8 @@ POST http://localhost:3003/atleta/cadastro
 Content-Type: application/json
 
 {
-    "competicaoId": "5721b389-4e6e-44d1-ab40-ef3f54905dcf",
-    "nome": "joao almeida",
+    "competicaoId": "4a7bc8b7-a674-42c7-8401-70a938d60c67",
+    "nome": "joao 4",
     "value1": 12.3,
     "value2": 12.4,
     "value3": 13.1,
