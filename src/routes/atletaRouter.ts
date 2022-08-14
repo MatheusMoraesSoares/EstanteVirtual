@@ -14,3 +14,4 @@ const atletaController = new AtletaController(
 export const atletaRouter = express.Router()
 
 atletaRouter.post('/cadastro', atletaController.registrar)
+atletaRouter.get('/getAll', atletaController.getAll)

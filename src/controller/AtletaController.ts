@@ -21,4 +21,14 @@ export class AtletaController {
             res.status(error.statusCode || 500).send({ message: error.message })
         }
     }
+
+    public getAll = async (req: Request, res: Response) => {
+        try {
+            const result = await this.atletaBusiness.getAll()
+
+            res.status(201).send({ message: result})
+        } catch (error: any) {
+            
+        }
+    }
 }

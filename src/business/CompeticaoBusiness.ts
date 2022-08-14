@@ -64,9 +64,16 @@ export class CompeticaoBusiness {
             if(!resposta || !id){
                 throw new InvalidInputError("Invalid input. All inputs are required")
             }
+
+            if(resposta !== 'TRUE' && resposta !== 'FALSE') {
+                throw new InvalidInputError("Definitivo must be TRUE or FALSE.")
+            }
             
             const result = await this.atletaDataBase.getAtletaByCompeticaoId(id)
             const tipo = await this.competicaoDataBase.getById(id)
+            if(!tipo || !result){
+                throw new InvalidInputError("Invalid Id.")
+            }
             if (resposta === 'FALSE') {
                 await this.competicaoDataBase.encerrarCompeticao(resposta, id)
             }

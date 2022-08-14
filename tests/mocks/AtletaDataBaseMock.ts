@@ -9,6 +9,10 @@ export class AtletaDataBaseMock {
         return []
     }
 
+    public getByName = async () => {
+        return []
+    }
+
     public getAll = async () => {
         return []
     }

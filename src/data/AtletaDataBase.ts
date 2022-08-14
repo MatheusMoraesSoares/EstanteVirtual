@@ -34,7 +34,7 @@ export class AtletaDataBase extends BaseDataBase {
         }
     }
 
-    getAll = async (nome: string) => {
+    getByName = async (nome: string) => {
         try {
             const result = await BaseDataBase.connection
                 .select("*")
@@ -44,6 +44,18 @@ export class AtletaDataBase extends BaseDataBase {
             return result[0]
         } catch (error: any) {
             throw new Error( error.mysqlMessage || error.message )
+        }
+    }
+
+    getAll = async () => {
+        try {
+            const result = await BaseDataBase.connection
+                .select("*")
+                .from(tableName)
+
+            return result
+        } catch (error: any) {
+            throw new Error( error.sqlMessage || error.message)
         }
     }
 }

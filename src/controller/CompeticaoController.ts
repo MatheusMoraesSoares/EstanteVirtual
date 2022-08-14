@@ -25,7 +25,6 @@ export class CompeticaoController {
     public getAll  = async (req: Request, res: Response) => {
         try {
             const result = await this.competicaoBusiness.getAll()
-            console.log(result)
             res.status(201).send({ message: result })
         } catch (error: any) {
             res.status(error.statusCode || 500).send({ message: error.message })
