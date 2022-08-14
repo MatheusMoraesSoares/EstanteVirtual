@@ -86,7 +86,7 @@ describe("testando getById de competiçao", () => {
             const token = await competicaoBusinessMock.getById(id)
 
         } catch (error: any) {
-            expect(error.message).toEqual("Id is required.")
+            expect(error.message).toBe("Id is required.")
             expect(error.statusCode).toBe(500)
         } finally {
             expect.assertions(2)
@@ -97,6 +97,23 @@ describe("testando getById de competiçao", () => {
             const id = "5721b389-4e6e-44d1-ab40-ef3f54905dcf"
 
             const token = await competicaoBusinessMock.getById(id)
-            expect(token).toEqual("asdfasdf")//?????? sempre funciona
+            expect(token).toBe("certo")
+    })
+})
+
+describe("testando pegar vencedor da competicao", () => {
+    test("retorna erro no caso de Id nao ser passada", async () => {
+        try {
+            const id = ""
+            const definitivo = "TRUE"
+
+            const token = await competicaoBusinessMock.getWinner(definitivo, id)
+
+        } catch (error: any) {
+            expect(error.message).toEqual("Invalid input. All inputs are required")
+            expect(error.statusCode).toBe(500)
+        } finally {
+            expect.assertions(2)
+        }
     })
 })

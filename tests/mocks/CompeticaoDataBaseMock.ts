@@ -18,7 +18,7 @@ export class CompeticaoDataBaseMock {
         }
     }
 
-    public encerrarCompeticao = async () => {
-
+    public encerrarCompeticao = async (id: string, resposta: string) => {
+        
     }
 }

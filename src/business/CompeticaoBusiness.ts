@@ -52,6 +52,7 @@ export class CompeticaoBusiness {
                 throw new InvalidInputError("Id is required.")
             }
             const result = await this.competicaoDataBase.getById(id)
+
             return result
         } catch (error: any) {
             throw new CustomError(500, error.sqlMessage || error.message)
@@ -60,7 +61,10 @@ export class CompeticaoBusiness {
 
     public getWinner = async (resposta: string, id: string) => {
         try {
-            console.log(id)
+            if(!resposta || !id){
+                throw new InvalidInputError("Invalid input. All inputs are required")
+            }
+            
             const result = await this.atletaDataBase.getAtletaByCompeticaoId(id)
             const tipo = await this.competicaoDataBase.getById(id)
             if (resposta === 'FALSE') {
