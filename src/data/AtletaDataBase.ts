@@ -5,7 +5,7 @@ const tableName = "atleta"
 
 export class AtletaDataBase extends BaseDataBase {
 
-    registrar = async (dados: TipoAtleta) => {
+    registrar = async (dados: TipoAtleta):Promise<any> => {
         try {
             await BaseDataBase.connection
                 .insert({

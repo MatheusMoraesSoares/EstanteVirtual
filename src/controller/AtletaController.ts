@@ -28,7 +28,19 @@ export class AtletaController {
 
             res.status(201).send({ message: result})
         } catch (error: any) {
-            
+            res.status(error.statusCode || 500).send({ message: error.message })
+        }
+    }
+
+    public getAtletasByCompeticaoId = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.body
+            console.log(id)
+            const result = await this.atletaBusiness.getAtletasByCompeticaoId(id)
+
+            res.status(201).send({ message: result })
+        } catch (error: any) {
+            res.status(error.statusCode || 500).send({ message: error.message })
         }
     }
 }

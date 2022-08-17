@@ -25,7 +25,7 @@ export class AtletaBusiness {
             const registeredAtlete = await this.atletaDataBase.getByName(nome)
 
             if(result.boolean === 'FALSE'){
-                throw new CustomError(500, "Essa competiçao ja foi encerrada")
+                throw new CustomError(500, "Competition already been closed.")
             }
             if(registeredAtlete){
                 throw new CustomError(500, "There's alreary a atlete registered with that name.")
@@ -63,6 +63,17 @@ export class AtletaBusiness {
     getAll = async () => {
         try {
             return await this.atletaDataBase.getAll()
+        } catch (error: any) {
+            throw new CustomError(500, error.sqlMessage || error.message)
+        }
+    }
+
+    getAtletasByCompeticaoId = async (id: string) => {
+        try {
+            if(!id) {
+                throw new InvalidInputError("Invalid input. Id is required.")
+            }
+            return await this.atletaDataBase.getAtletaByCompeticaoId(id)
         } catch (error: any) {
             throw new CustomError(500, error.sqlMessage || error.message)
         }

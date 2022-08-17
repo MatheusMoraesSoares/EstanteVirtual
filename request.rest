@@ -15,7 +15,7 @@ GET http://localhost:3003/competicao/getName
 Content-Type: application/json
 
 {
-    "id": "4a7bc8b7-a674-42c7-8401-70a938d60c67"
+    "id": "5721b389-4e6e-44d1-ab40-ef3f54905dcf"
 }
 
 ###pegar vencedor
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
     "competicaoId": "4a7bc8b7-a674-42c7-8401-70a938d60c67",
-    "nome": "joao 5",
+    "nome": "joao 8",
     "value1": 12.3,
     "value2": 12.4,
     "value3": 13.1
@@ -41,3 +41,11 @@ Content-Type: application/json
 
 ###pegar todos os atletas
 GET http://localhost:3003/atleta/getAll
+
+###pegar todos os atletas de uma competicao
+GET http://localhost:3003/atleta/getAtletas
+Content-Type: application/json
+
+{
+    "id": "4a7bc8b7-a674-42c7-8401-70a938d60c67"
+}

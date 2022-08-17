@@ -1,3 +1,4 @@
+import { textSpanEnd } from "typescript";
 import { AtletaBusiness } from "../src/business/AtletaBusiness";
 import { CompeticaoBusiness } from "../src/business/CompeticaoBusiness";
 import { DadosCompeticao } from "../src/types/Dados";
@@ -187,24 +188,99 @@ describe("testando cadastrar o atleta", () => {
 
             const dados: DadosAtleta = {
                 competicaoId: "4a7bc8b7-a674-42c7-8401-70a938d60c67",
-                nome: "joao 4",
+                nome: "",
                 value1: 12.3,
                 value2: 12.4,
                 value3: 13.1
             }
-            const competicaoId = "4a7bc8b7-a674-42c7-8401-70a938d60c67"
-            const nome = "joao 4"
-            const value1 = 12.3
-            const value2 = 12.4
-            const value3 = 13.1
-            const unidade = ""
 
-            // await atletaBusinessMock.registrar()
+            await atletaBusinessMock.registrar(dados)
 
         } catch (error: any) {
-
+            expect(error.message).toBe("Invalid input. All inputs are required")
+            expect(error.statusCode).toBe(500)
         } finally {
-
+            expect.assertions(2)
         }
     })
+
+    test("retorna erro no caso de o nome ja existir no banco de dados", async() => {
+        try {
+            
+            const dados: DadosAtleta = {
+                competicaoId: '5721b389-4e6e-44d1-ab40-ef3f54905dcf',
+                nome: "joao almeida",
+                value1: 12.3,
+                value2: 12.4,
+                value3: 13.1
+            }
+
+            await atletaBusinessMock.registrar(dados)
+        } catch (error: any) {
+            expect(error.message).toBe("There's alreary a atlete registered with that name.")
+            expect(error.statusCode).toBe(500)
+        } finally {
+            expect.assertions(2)
+        }
+    })
+
+    test("retorna erro se a competiçao ja tiver sido encerrada", async() => {
+        try {
+            
+            const dados: DadosAtleta = {
+                competicaoId: '5721b389-4e6e-44d1-ab40-ef3f54905dcf',
+                nome: "alguem",
+                value1: 12.3,
+                value2: 12.4,
+                value3: 13.1
+            }
+
+            await atletaBusinessMock.registrar(dados)
+
+        } catch (error: any) {
+            expect(error.message).toBe("Competition already been closed.")
+            expect(error.statusCode).toBe(500)
+        } finally {
+            expect.assertions(2)
+        }
+    })
+
+    test("sucesso no cadastro", async() => {
+        
+        const dados: DadosAtleta = {
+            competicaoId: '5721b389-4e6e-44d1-ab40-ef3f54905dcf',
+            nome: "sdfgsdfgsdfg",
+            value1: 12.3,
+            value2: 12.4,
+            value3: 13.1
+        }
+
+        await atletaBusinessMock.registrar(dados)
+        expect(dados).toBe("certo")
+    })
+})
+
+describe("testando pegar todos os atletas de uma competicao", () => {
+    test("retorna erro no caso da id nao ser passada", async() => {
+        try {
+
+            const id = "4a7bc8b7-a674-42c7-8401-70a938d60c67"
+
+            await atletaBusinessMock.getAtletasByCompeticaoId(id)
+
+        } catch (error: any) {
+            expect(error.statusCode).toBe(500)
+            expect(error.message).toBe("Invalid input. Id is required.")
+        } finally {
+            expect.assertions(2)
+        }
+    })
+
+    // test("sucesso", async() => {
+    //     const id = "4a7bc8b7-a674-42c7-8401-70a938d60c67"
+
+    //     await atletaBusinessMock.getAtletasByCompeticaoId(id)
+
+        
+    // })
 })

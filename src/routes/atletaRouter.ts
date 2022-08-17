@@ -15,3 +15,4 @@ export const atletaRouter = express.Router()
 
 atletaRouter.post('/cadastro', atletaController.registrar)
 atletaRouter.get('/getAll', atletaController.getAll)
+atletaRouter.get('/getAtletas', atletaController.getAtletasByCompeticaoId)
