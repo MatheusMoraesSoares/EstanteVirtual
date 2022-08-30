@@ -20,7 +20,7 @@ export class AtletaDataBase extends BaseDataBase {
         }
     }
 
-    getAtletaByCompeticaoId = async (competicao: string) => {
+    getAtletaByCompeticaoId = async (competicao: string): Promise < any>  => {
         try {
             const result = await BaseDataBase.connection
                 .select("*")

@@ -5,6 +5,7 @@ import { DadosCompeticao } from "../src/types/Dados";
 import { DadosAtleta } from "../src/types/DadosAtleta";
 import { AtletaDataBaseMock } from "./mocks/AtletaDataBaseMock";
 import { CompeticaoDataBaseMock } from "./mocks/CompeticaoDataBaseMock";
+import { mock1, mock2 } from "./mocks/DatabaseMock";
 
 const competicaoBusinessMock = new CompeticaoBusiness(
     new CompeticaoDataBaseMock(),
@@ -80,7 +81,8 @@ describe("testando a competicao signup", () => {
 
         const token = await competicaoBusinessMock.registrar(competicao)
 
-        expect(token).toEqual("id")
+        expect(token).toBeDefined()
+        expect(typeof token == 'string').toBeTruthy()
 
     })
 })
@@ -106,7 +108,7 @@ describe("testando getById de competiçao", () => {
         const id = { id: "5721b389-4e6e-44d1-ab40-ef3f54905dcf" }
 
         const token = await competicaoBusinessMock.getById(id)
-        expect(token).toBe("certo")
+        expect(token).toEqual({"boolean": "TRUE", "unidade": "s"})
     })
 })
 
@@ -177,8 +179,8 @@ describe("testando pegar vencedor da competicao", () => {
         const definitivo = "FALSE"
 
         const token: any = await competicaoBusinessMock.getWinner(definitivo, id)
-
-        expect(token).toEqual("certo")
+        console.log(token)
+        expect(token).toStrictEqual(mock2)
     })
 })
 
@@ -228,7 +230,7 @@ describe("testando cadastrar o atleta", () => {
         try {
             
             const dados: DadosAtleta = {
-                competicaoId: '5721b389-4e6e-44d1-ab40-ef3f54905dcf',
+                competicaoId: '5721b389-4e6e-44d1-ab40-ef3f54905dcfl',
                 nome: "alguem",
                 value1: 12.3,
                 value2: 12.4,
@@ -255,8 +257,8 @@ describe("testando cadastrar o atleta", () => {
             value3: 13.1
         }
 
-        await atletaBusinessMock.registrar(dados)
-        expect(dados).toBe("certo")
+        const token = await atletaBusinessMock.registrar(dados)
+        expect(token).toBe("Dados inseridos com sucesso")
     })
 })
 
@@ -264,7 +266,7 @@ describe("testando pegar todos os atletas de uma competicao", () => {
     test("retorna erro no caso da id nao ser passada", async() => {
         try {
 
-            const id = "4a7bc8b7-a674-42c7-8401-70a938d60c67"
+            const id = ""
 
             await atletaBusinessMock.getAtletasByCompeticaoId(id)
 
@@ -276,11 +278,11 @@ describe("testando pegar todos os atletas de uma competicao", () => {
         }
     })
 
-    // test("sucesso", async() => {
-    //     const id = "4a7bc8b7-a674-42c7-8401-70a938d60c67"
+    test("sucesso", async() => {
+        const id = "4a7bc8b7-a674-42c7-8401-70a938d60c67"
 
-    //     await atletaBusinessMock.getAtletasByCompeticaoId(id)
+        await atletaBusinessMock.getAtletasByCompeticaoId(id)
 
         
-    // })
+    })
 })

@@ -27,7 +27,7 @@ export class AtletaBusiness {
             if(result.boolean === 'FALSE'){
                 throw new CustomError(500, "Competition already been closed.")
             }
-            if(registeredAtlete){
+            if(registeredAtlete.length>0){
                 throw new CustomError(500, "There's alreary a atlete registered with that name.")
             }
 
@@ -40,7 +40,10 @@ export class AtletaBusiness {
                     value = dados.value3
                 }
                 const data: TipoAtleta = { competicaoId, nome, value }
-                return await this.atletaDataBase.registrar(data)
+
+                await this.atletaDataBase.registrar(data)
+
+                return "Dados inseridos com sucesso"
             }
             if(result.unidade === Role.segundos) {
                 value = dados.value1
@@ -52,7 +55,10 @@ export class AtletaBusiness {
                 }
                 const data: TipoAtleta = { competicaoId, nome, value }
 
-                return await this.atletaDataBase.registrar(data)
+                await this.atletaDataBase.registrar(data)
+                
+                return "Dados inseridos com sucesso"
+                
             }
 
         } catch (error: any) {

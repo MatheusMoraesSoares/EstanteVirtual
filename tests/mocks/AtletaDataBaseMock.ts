@@ -1,5 +1,6 @@
 import { DadosAtleta } from "../../src/types/DadosAtleta";
 import { TipoAtleta } from "../../src/types/TipoAtleta";
+import { mock1 } from "./DatabaseMock";
 
 export class AtletaDataBaseMock {
     public registrar = async (parametro: TipoAtleta) => {
@@ -15,11 +16,15 @@ export class AtletaDataBaseMock {
     }
 
     public getAtletaByCompeticaoId = async () => {
-        return []
+        return mock1
     }
 
-    public getByName = async () => {
-        return []
+    public getByName = async (name: string) => {
+        if(name === "joao almeida") {
+            return [{name: "joao almeida"}]
+        } else {
+            return []
+        }
     }
 
     public getAll = async () => {

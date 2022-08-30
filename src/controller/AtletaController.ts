@@ -13,9 +13,9 @@ export class AtletaController {
             const { competicaoId, nome, value1, value2, value3 } = req.body
             const dados: DadosAtleta = { competicaoId, nome, value1, value2, value3 }
 
-            await this.atletaBusiness.registrar(dados)
+            const result = await this.atletaBusiness.registrar(dados)
 
-            res.status(201).send({ message: "Dados inseridos" })
+            res.status(201).send({ message: result })
 
         } catch (error: any) {
             res.status(error.statusCode || 500).send({ message: error.message })
