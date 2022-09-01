@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/index.js",
+    "start": "node ./build/src/index.js",
+    "build": "tsc",
     "dev": "npx ts-node-dev ./src/index.ts",
     "test": "clear && echo \"Testagem iniciada...\" && jest"
   },
