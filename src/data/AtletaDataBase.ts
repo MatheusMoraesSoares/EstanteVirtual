@@ -41,7 +41,7 @@ export class AtletaDataBase extends BaseDataBase {
                 .from(tableName)
                 .where({nome})
 
-            return result[0]
+            return result
         } catch (error: any) {
             throw new Error( error.mysqlMessage || error.message )
         }
