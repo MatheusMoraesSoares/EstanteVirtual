@@ -1,5 +1,5 @@
 ###cadastrar competicao
-POST http://localhost:3003/competicao/cadastro
+POST https://estantevirtualmatheus.herokuapp.com/competicao/cadastro
 Content-Type: application/json
 
 {
@@ -8,10 +8,10 @@ Content-Type: application/json
 }
 
 ###pegar todas as competicoes
-GET http://localhost:3003/competicao/get
+GET https://estantevirtualmatheus.herokuapp.com/competicao/get
 
 ###pegar dados da competicao pelo id
-GET http://localhost:3003/competicao/getName
+GET https://estantevirtualmatheus.herokuapp.com/competicao/getName
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ###pegar vencedor
-GET http://localhost:3003/competicao/getWinner
+GET https://estantevirtualmatheus.herokuapp.com/competicao/getWinner
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###cadastrar atleta
-POST http://localhost:3003/atleta/cadastro
+POST https://estantevirtualmatheus.herokuapp.com/atleta/cadastro
 Content-Type: application/json
 
 {
@@ -40,10 +40,10 @@ Content-Type: application/json
 }
 
 ###pegar todos os atletas
-GET http://localhost:3003/atleta/getAll
+GET https://estantevirtualmatheus.herokuapp.com/atleta/getAll
 
 ###pegar todos os atletas de uma competicao
-GET http://localhost:3003/atleta/getAtletas
+GET https://estantevirtualmatheus.herokuapp.com/atleta/getAtletas
 Content-Type: application/json
 
 {
