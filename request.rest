@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
     "competicaoId": "4a7bc8b7-a674-42c7-8401-70a938d60c67",
-    "nome": "joao 8",
+    "nome": "joao 10",
     "value1": 12.3,
     "value2": 12.4,
     "value3": 13.1
