@@ -35,7 +35,6 @@ export class AtletaController {
     public getAtletasByCompeticaoId = async (req: Request, res: Response) => {
         try {
             const { id } = req.body
-            console.log(id)
             const result = await this.atletaBusiness.getAtletasByCompeticaoId(id)
 
             res.status(201).send({ message: result })

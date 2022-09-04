@@ -48,7 +48,6 @@ export class CompeticaoController {
             const { definitivo, id } = req.body
 
             const result = await this.competicaoBusiness.getWinner(definitivo, id)
-            console.log(result)
 
             res.status(201).send({ message: result })
         } catch (error: any) {

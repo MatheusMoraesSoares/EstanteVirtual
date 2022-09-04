@@ -79,7 +79,14 @@ export class AtletaBusiness {
             if(!id) {
                 throw new InvalidInputError("Invalid input. Id is required.")
             }
-            return await this.atletaDataBase.getAtletaByCompeticaoId(id)
+            
+            const result = await this.atletaDataBase.getAtletaByCompeticaoId(id)
+
+            if(result.length<1) {
+                throw new InvalidInputError("Invalid input. Id not found.")
+            }
+
+            return result
         } catch (error: any) {
             throw new CustomError(500, error.sqlMessage || error.message)
         }

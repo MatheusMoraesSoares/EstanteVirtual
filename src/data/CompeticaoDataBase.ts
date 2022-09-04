@@ -45,14 +45,12 @@ export class CompeticaoDataBase extends BaseDataBase {
 
     encerrarCompeticao = async (boolean: string, id: string):Promise<any> => {
         try {
-            console.log(boolean, id)
             await BaseDataBase.connection
                 .update('boolean', boolean)
                 .into(tableName)
                 .where('id', id)
 
         } catch (error: any) {
-            console.log(error)
             throw new Error( error.mysqlMessage || error.message )
         }
     }

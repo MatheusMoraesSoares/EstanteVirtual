@@ -179,7 +179,7 @@ describe("testando pegar vencedor da competicao", () => {
         const definitivo = "FALSE"
 
         const token: any = await competicaoBusinessMock.getWinner(definitivo, id)
-        console.log(token)
+
         expect(token).toStrictEqual(mock2)
     })
 })
